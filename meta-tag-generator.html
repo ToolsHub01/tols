@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Meta Tag Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div data-include="../header.html"></div>
+  <div class="container my-5">
+    <h1>Meta Tag Generator</h1>
+    <input type="text" id="title" class="form-control mb-2" placeholder="Page Title">
+    <input type="text" id="description" class="form-control mb-2" placeholder="Description">
+    <input type="text" id="keywords" class="form-control mb-2" placeholder="Keywords (comma separated)">
+    <button id="generateBtn" class="btn btn-primary mb-3">Generate Meta Tags</button>
+    <pre id="result" class="bg-light p-3"></pre>
+    <div class="ad-space my-4">[Ad Here]</div>
+  </div>
+  <div data-include="../footer.html"></div>
+  <script src="../assets/js/include.js"></script>
+  <script>
+    document.getElementById('generateBtn').addEventListener('click', () => {
+      const title = document.getElementById('title').value;
+      const desc = document.getElementById('description').value;
+      const keywords = document.getElementById('keywords').value;
+      let meta = '';
+      if (title) meta += `<title>${title}</title>\n<meta name="title" content="${title}">\n`;
+      if (desc) meta += `<meta name="description" content="${desc}">\n`;
+      if (keywords) meta += `<meta name="keywords" content="${keywords}">\n`;
+      document.getElementById('result').textContent = meta;
+    });
+  </script>
+</body>
+</html> 

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>YouTube Thumbnail Downloader</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div data-include="../header.html"></div>
+  <div class="container my-5">
+    <h1>YouTube Thumbnail Downloader</h1>
+    <input type="text" id="ytUrl" class="form-control mb-3" placeholder="Enter YouTube Video URL">
+    <button id="getBtn" class="btn btn-primary mb-3">Get Thumbnail</button>
+    <div id="result" class="mb-3"></div>
+    <div class="ad-space my-4">[Ad Here]</div>
+  </div>
+  <div data-include="../footer.html"></div>
+  <script src="../assets/js/include.js"></script>
+  <script>
+    document.getElementById('getBtn').addEventListener('click', () => {
+      const url = document.getElementById('ytUrl').value;
+      const match = url.match(/(?:v=|\.be\/|embed\/)([\w-]{11})/);
+      if (!match) {
+        document.getElementById('result').textContent = 'Invalid YouTube URL.';
+        return;
+      }
+      const id = match[1];
+      const thumb = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+      document.getElementById('result').innerHTML = `<img src="${thumb}" class="img-fluid mb-2"/><a href="${thumb}" download="thumbnail.jpg" class="btn btn-success">Download Thumbnail</a>`;
+    });
+  </script>
+</body>
+</html> 

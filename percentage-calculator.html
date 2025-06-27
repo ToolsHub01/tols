@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Percentage Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div data-include="../header.html"></div>
+  <div class="container my-5">
+    <h1>Percentage Calculator</h1>
+    <div class="row mb-3">
+      <div class="col">
+        <input type="number" id="value" class="form-control" placeholder="Value">
+      </div>
+      <div class="col">
+        <input type="number" id="percent" class="form-control" placeholder="Percentage (%)">
+      </div>
+    </div>
+    <button id="calcBtn" class="btn btn-primary mb-3">Calculate</button>
+    <div id="result" class="mb-3"></div>
+    <div class="ad-space my-4">[Ad Here]</div>
+  </div>
+  <div data-include="../footer.html"></div>
+  <script src="../assets/js/include.js"></script>
+  <script>
+    document.getElementById('calcBtn').addEventListener('click', () => {
+      const value = parseFloat(document.getElementById('value').value);
+      const percent = parseFloat(document.getElementById('percent').value);
+      if (isNaN(value) || isNaN(percent)) {
+        document.getElementById('result').textContent = 'Please enter valid numbers.';
+        return;
+      }
+      const res = value * percent / 100;
+      document.getElementById('result').textContent = `${percent}% of ${value} is ${res}`;
+    });
+  </script>
+</body>
+</html> 
